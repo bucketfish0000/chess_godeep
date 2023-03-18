@@ -5,6 +5,8 @@ import reader
 import dataloader
 import torch
 from torch.utils.data import Dataset, DataLoader
+import torchvision.models as models
+
 
 class NeuralNet(torch.nn.Module):
     def __init__(self):
@@ -57,9 +59,16 @@ def train_set(dataloader,model,loss_fn,optimizer):
         optimizer.step()
 
 def train_loop(dataloaders,epochs=10):
+    try:
+        f = open("testing_losses", "x")
+        f.close()
+    except:
+        f = open("testing_losses.txt", "w")
+        f.close()
+    
     model=NeuralNet()
     loss_fn = torch.nn.L1Loss()
-    optimizer = torch.optim.Adam(params=model.parameters(),lr=1)
+    optimizer = torch.optim.Adam(params=model.parameters(),lr=0.1)
     print("training...")
     for epoch in range(epochs):
         test_set_number = random.randint(0,9)
@@ -68,6 +77,10 @@ def train_loop(dataloaders,epochs=10):
         train_sets(dataloaders,test_set_number,model,loss_fn,optimizer)
         print(" training finished, now testing...")
         test_set(dataloaders[test_set_number],test_set_number,model,loss_fn)
+
+    torch.save(model, 'model.pth')
+    model = models.vgg16(pretrained=True)
+    torch.save(model.state_dict(), 'model_weights.pth')
     return model, loss_fn, optimizer
 
 def train_sets(dataloaders,test_set_number,model,loss_fn,optimizer):
@@ -79,6 +92,7 @@ def train_sets(dataloaders,test_set_number,model,loss_fn,optimizer):
         train_set(dataloaders[i],model,loss_fn,optimizer)
 
 def test_set(test_loader,test_set_number,model,loss_fn):
+    f = open("training_losses.txt","w")
     print("  testing on testing set, index =", test_set_number)
     test_loss = 0
     for board,ending in test_loader:
@@ -89,6 +103,8 @@ def test_set(test_loader,test_set_number,model,loss_fn):
             loss=loss_fn(prediction,ending_tensor)
             test_loss+=loss
     test_loss = test_loss / len(test_loader)
+    f.write(test_loss)
+    f.close()
     print("  average test loss on set:",test_loss)
     
 def init(sets):
