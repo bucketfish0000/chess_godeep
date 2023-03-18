@@ -103,7 +103,7 @@ Added custom dataloaders class to project(`dataloader.py`). Instead of using bat
 
 Fitting is still very bad at this point.
 
-Loss function changed to L1. Still no idea about other hyperparams.
+Loss function changed to L1. Still no idea about other hyperparams. Fitting still bad.
 
 Added txt file that contains test losses of each training loop.
 
