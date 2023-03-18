@@ -25,7 +25,7 @@ Ambiguity shows up here:
 
 Other problems include:
 
-- The giant size of data, which makes the pre-processing very long(typicallt ~10 mins). The way of handling probably contributed to this; there should be faster ways to do it.
+- The giant size of data, which makes the pre-processing very long(~10 mins). The way of handling probably contributed to this; there should be faster ways to do it.
 
 Each piece of data in the form of (board, tuple) is randomly put into one out of ten sets, for the purpose of 10-Fold Cross Validation.
 
