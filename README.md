@@ -1,6 +1,6 @@
 The goal of this toy project is to train a neuro-network on a set of chess games to make it estimate the relative advantages/chances of winning for each player given any chessboard. Data of chess games in pgn format as well as methods to process them into boards are from <https://github.com/osipychev/chess_godeep>.
 
-Here are some thoughts emerged when going through it.
+Logs:
 
 ### 15 March
 
