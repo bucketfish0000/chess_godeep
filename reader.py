@@ -101,7 +101,7 @@ def readtxt():
     print("game data parsed")
     # now black/white_win_games is list of games where in each game there are multiple game boards (8*8) aligned in the sequence they were played
     # doing further proc
-    sets = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]]
+    sets = [[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]],[[],[]]]
     #testing = []
     white_count = 0
     for game in white_win_games:
@@ -152,6 +152,7 @@ def readtxt():
             
             #just rolling a random dice to put things into 10 roughly even sets
             dice = random.randint(0,9)
+            #print(dice,len(sets))
             sets[dice][0].append(datum)
             sets[dice][1].append(t)
             white_count += 1

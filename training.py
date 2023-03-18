@@ -10,7 +10,7 @@ class NeuralNet(torch.nn.Module):
     def __init__(self):
         super().__init__()
         
-        #conv NN
+        #conv NNdataloaders
         self.conv=torch.nn.Sequential(
             #beginning with 6*8*8 input
             torch.nn.Conv2d(6,18,2), #6-channel 8*8 input--2*2 kernel-->7*7 output. using 4-channel. 
@@ -45,10 +45,12 @@ def train_set(dataloader,model,loss_fn,optimizer):
     trains model over a given set with specified loss_fn and optimizer.
     '''
     for board,ending in dataloader:
+        #print(board,ending)
         prediction = model(board)
         prediction = torch.tensor([float(prediction[0][0]),float(prediction[0][1])])
-        #print(ending, prediction)
-        loss = loss_fn(prediction,ending)
+        ending_tensor = torch.tensor([float(ending[0]),float(ending[1])])
+        #print(prediction)
+        loss = loss_fn(prediction,ending_tensor)
         optimizer.zero_grad()
         loss.requires_grad = True
         loss.backward()
@@ -69,23 +71,24 @@ def train_loop(dataloaders,epochs=10):
     return model, loss_fn, optimizer
 
 def train_sets(dataloaders,test_set_number,model,loss_fn,optimizer):
-    for i in range(len(sets)):
+    for i in range(len(dataloaders)):
         if i == test_set_number:
             print("  bypass testing set, index =", i)
             continue
         print("  training on set", i)
         train_set(dataloaders[i],model,loss_fn,optimizer)
 
-def test_set(test_loader,test_set_numbder,model,loss_fn):
+def test_set(test_loader,test_set_number,model,loss_fn):
     print("  testing on testing set, index =", test_set_number)
     test_loss = 0
     for board,ending in test_loader:
         with torch.no_grad():
             prediction = model(board)
             prediction = torch.tensor([float(prediction[0][0]),float(prediction[0][1])])
-            loss=loss_fn(prediction,ending)
+            ending_tensor = torch.tensor([float(ending[0]),float(ending[1])])
+            loss=loss_fn(prediction,ending_tensor)
             test_loss+=loss
-    test_loss = test_loss / len(sets[test_set_number])
+    test_loss = test_loss / len(test_loader[test_set_number])
     print("  average test loss on set:",test_loss)
     
 def init(sets):
