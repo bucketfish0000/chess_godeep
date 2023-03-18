@@ -1,3 +1,9 @@
+TODO ASAP
+
+https://pytorch.org/tutorials/recipes/recipes/custom_dataset_transforms_loader.html#:~:text=PyTorch%20provides%20many%20tools%20to%20make%20data%20loading,these%20components%20together%20to%20create%20a%20custom%20dataloader.
+
+
+------
 The goal of this toy project is to train a neuro-network on a set of chess games to make it estimate the relative advantages/chances of winning for each player given any chessboard. Data of chess games in pgn format as well as methods to process them into boards are from <https://github.com/osipychev/chess_godeep>.
 
 Logs:
