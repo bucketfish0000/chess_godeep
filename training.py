@@ -93,8 +93,7 @@ def init(sets):
     dataloaders = []
     for i in range(10):
         datasets.append(dataloader.BoardDataset(sets[i][0],sets[i][1]))
-        dataloaders.append(torch.utils.data.DataLoader(datasets[i], batch_size=1, shuffle=True)
-    )
+        dataloaders.append(torch.utils.data.DataLoader(datasets[i], batch_size=1, shuffle=True))
     return datasets,dataloaders 
     
 
