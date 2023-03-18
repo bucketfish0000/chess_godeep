@@ -1,6 +1,3 @@
-TODO ASAP
-
-https://pytorch.org/tutorials/recipes/recipes/custom_dataset_transforms_loader.html#:~:text=PyTorch%20provides%20many%20tools%20to%20make%20data%20loading,these%20components%20together%20to%20create%20a%20custom%20dataloader.
 
 
 ------
