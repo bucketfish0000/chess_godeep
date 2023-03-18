@@ -99,8 +99,20 @@ Problems at this point:
 
 Updated logs.
 
-Added custom dataloaders class to project(`dataloader.py`). Instead of using batches, 10 different dataloaders are created for the sake of convenient random choosing of training/testing set in 10-F CV
+Added custom dataloaders class to project(`dataloader.py`). Instead of using batches, 10 different dataloaders are created for the sake of convenient random choosing of training/testing set in 10-F CV.
+
+Fitting is still very bad at this point.
 
 Loss function changed to L1. Still no idea about other hyperparams.
+
+Added txt file that contains test losses of each training loop.
+
+Saved model and params to directory. To load:
+
+    model = torch.load('model.pth')
+    model = models.vgg16()
+    model.load_state_dict(torch.load('model_weights.pth'))
+    model.eval()
+
 
 ------
