@@ -13,7 +13,7 @@ A board is divided into 6 channels, each contains info about positions of a sing
 
 Original thoughts were also to keep additional channels for the original board as well as combinations of piece categories(e.g. minor pieces are pawns and bishops together), but this seems to be redundant, thus a cut-off.
 
-Apparantly chars cannot be fed into `torch.nn` Neuro Nets, so numbers are used instead. Black pieces are represented by minus numbers, White pieces positive.
+Apparantly chars cannot be fed into `torch.nn` Neuro Nets, so numbers are used instead. Black pieces are represented by negative numbers, White pieces positive.
 
 Results of games are (for now) represented in two-tuples: (1,0) means White winning, (0,1) Black winning. The idea is to associate each board with the result of the game, in the process of which the board appeared.
 
