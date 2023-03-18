@@ -79,7 +79,14 @@ Problems at this point:
 
 - No way to tell issues such as overfitting.
 
-- Long running time. Could be better if running on GPU (for some reason not supported on the machine working.
+- Long running time. Could be better if running on GPU (for some reason not supported on the machine working).
+
+- Need to output and store pre-processed data as well as training results to files instead of writing to cmd lines.
 
 ------
-Suspended
+
+### 18 March 
+
+Updated logs.
+
+------
