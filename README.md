@@ -107,7 +107,7 @@ Loss function changed to L1. Still no idea about other hyperparams. Fitting stil
 
 Added txt file that contains test losses of each training loop.
 
-Saved model and params to directory. To load:
+Added scripts in code to store and params to directory. To load:
 
     model = torch.load('model.pth')
     model = models.vgg16()
