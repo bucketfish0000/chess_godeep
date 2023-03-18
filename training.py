@@ -58,7 +58,7 @@ def train_set(dataloader,model,loss_fn,optimizer):
 
 def train_loop(dataloaders,epochs=10):
     model=NeuralNet()
-    loss_fn = torch.nn.CrossEntropyLoss()
+    loss_fn = torch.nn.L1Loss()
     optimizer = torch.optim.Adam(params=model.parameters(),lr=1)
     print("training...")
     for epoch in range(epochs):
@@ -67,7 +67,7 @@ def train_loop(dataloaders,epochs=10):
         print(" testing set is: set",test_set_number)
         train_sets(dataloaders,test_set_number,model,loss_fn,optimizer)
         print(" training finished, now testing...")
-        test_set(dataloader[test_set_number],test_set_number,model,loss_fn)
+        test_set(dataloaders[test_set_number],test_set_number,model,loss_fn)
     return model, loss_fn, optimizer
 
 def train_sets(dataloaders,test_set_number,model,loss_fn,optimizer):
@@ -88,7 +88,7 @@ def test_set(test_loader,test_set_number,model,loss_fn):
             ending_tensor = torch.tensor([float(ending[0]),float(ending[1])])
             loss=loss_fn(prediction,ending_tensor)
             test_loss+=loss
-    test_loss = test_loss / len(test_loader[test_set_number])
+    test_loss = test_loss / len(test_loader)
     print("  average test loss on set:",test_loss)
     
 def init(sets):

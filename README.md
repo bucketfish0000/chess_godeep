@@ -45,7 +45,12 @@ Did nothing.
 Training is handeled by `training.py`. Run the following to train the NN over the data:
 
     importlib.reload(reader.py)
-    model, loss_fn, optimizer = training.train_loop(sets,epoch=<int>)
+    importlib.reload(dataloader.py)
+    datasets,dataloaders = training.init(sets)
+    model, loss_fn, optimizer = training.train_loop(dataloaders,epoch=<int>)
+
+
+Update: need to initialize data into `dataloader` objects (mentioned below) before training. `dataloaders`, which is a list of `dataloader` objects, is passed to `training_loop`.
 
 `training_loop` goes over all data for `epoch` times (default is 10).
 
@@ -93,5 +98,9 @@ Problems at this point:
 ### 18 March
 
 Updated logs.
+
+Added custom dataloaders class to project(`dataloader.py`). Instead of using batches, 10 different dataloaders are created for the sake of convenient random choosing of training/testing set in 10-F CV
+
+Loss function changed to L1. Still no idea about other hyperparams.
 
 ------
